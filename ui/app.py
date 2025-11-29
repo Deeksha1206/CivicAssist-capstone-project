@@ -1,0 +1,181 @@
+import streamlit as st
+import requests
+from datetime import datetime
+
+st.set_page_config(page_title="CivicAssist", layout="centered")
+
+# ---------------- HEADER -----------------
+st.title("🛠️ CivicAssist — Citizen Complaint Resolver")
+st.markdown(
+    "<p style='font-size:17px;color:#bbb;'>"
+    "Submit a civic issue and the AI agent will classify it, identify the department, "
+    "and generate an action plan."
+    "</p>",
+    unsafe_allow_html=True,
+)
+
+# ---------------- SIDEBAR ----------------
+st.sidebar.markdown("---")
+st.sidebar.header("⚙️ Settings")
+backend_url = st.sidebar.text_input("Backend URL", "http://127.0.0.1:8000")
+
+# -------- Helper: status badge HTML -------
+def status_badge_html(status: str) -> str:
+    """Return an inline HTML badge for a status string."""
+    s = (status or "").lower()
+    if s == "pending":
+        bg = "#f0c14b"  # yellow-ish
+        emoji = "🟡"
+    elif s == "in progress" or s == "in-progress":
+        bg = "#f39c12"  # orange
+        emoji = "🟠"
+    elif s == "resolved":
+        bg = "#2ecc71"  # green
+        emoji = "🟢"
+    else:
+        bg = "#95a5a6"  # gray
+        emoji = "⚪"
+    return f'<span style="background:{bg};color:#000;padding:6px 10px;border-radius:12px;font-weight:600">{emoji} {status}</span>'
+
+# ---------------- COMPLAINT FORM ----------------
+st.subheader("📝 Submit a Complaint")
+
+with st.form("complaint_form"):
+    user_id = st.text_input("User ID", value="user1")
+    complaint_text = st.text_area("Complaint Details", height=140)
+    submitted = st.form_submit_button("Submit Complaint")
+
+if submitted:
+    if not complaint_text.strip():
+        st.error("⚠️ Please enter a complaint before submitting.")
+    else:
+        payload = {
+            "user_id": user_id,
+            "complaint_text": complaint_text,
+            "attachments": []
+        }
+
+        try:
+            with st.spinner("Processing your complaint..."):
+                resp = requests.post(f"{backend_url}/agent/resolve", json=payload)
+                resp.raise_for_status()
+                result = resp.json()
+
+            st.success("🎉 Complaint processed successfully!")
+
+            # ------- Classification -------
+            st.markdown("### 🔍 Classification")
+            cls = result.get("classification", {})
+            st.markdown(
+                f"""
+                <div style="padding:12px;border-radius:8px;border:1px solid #555;">
+                <b>Issue type:</b> {cls.get('issue_type')} <br>
+                <b>Confidence:</b> {cls.get('confidence')}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            if cls.get("highlights"):
+                st.markdown("**Highlights:**")
+                for h in cls["highlights"]:
+                    st.write(f"- {h}")
+
+            # ------- Department -------
+            st.markdown("### 🏛 Department")
+            dep = result.get("department", {})
+            st.markdown(
+                f"""
+                <div style="padding:12px;border-radius:8px;border:1px solid #555;">
+                <b>{dep.get('name')}</b><br>
+                <b>Portal:</b> <a href="{dep.get('contact', {}).get('portal')}" target="_blank" style="color:#4da6ff;">
+                {dep.get('contact', {}).get('portal')}
+                </a><br>
+
+                <b>Phone:</b> {dep.get('contact', {}).get('phone')}<br>
+                <b>Justification:</b> {dep.get('justification')}<br>
+                <b>Confidence:</b> {dep.get('confidence')}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            # ------- Action Plan -------
+            st.markdown("### 🧭 Action Plan")
+            plan = result.get("action_plan", {})
+            st.markdown("<ul>", unsafe_allow_html=True)
+            for step in plan.get("steps", []):
+                st.markdown(f"<li>{step}</li>", unsafe_allow_html=True)
+            st.markdown("</ul>", unsafe_allow_html=True)
+            st.markdown(f"**Estimated resolution time:** {plan.get('estimated_resolution_time')}")
+
+            # ------- Complaint Status (NEW) -------
+            st.markdown("### 📌 Complaint Status")
+            status = result.get("status", "Pending")
+            st.markdown(status_badge_html(status), unsafe_allow_html=True)
+
+            st.caption(f"Processed at {datetime.utcnow()}")
+
+        except Exception as e:
+            st.error(f"❌ Error communicating with backend: {e}")
+
+# ---------------- HISTORY SECTION ----------------
+st.write("---")
+st.subheader("📚 Complaint History")
+
+hist_user = st.text_input("User ID for history", "user1", key="history")
+
+if st.button("Get History"):
+    try:
+        r = requests.get(f"{backend_url}/agent/history/{hist_user}")
+
+        if r.status_code == 200:
+            history = r.json().get("history", [])
+
+            if not history:
+                st.info("ℹ️ No complaints found for this user.")
+            else:
+                st.markdown("### 📜 Past Complaints")
+
+                # DARK MODE / LIGHT MODE handling
+                is_dark = st.get_option("theme.base") == "dark"
+                card_bg = "#1e1e1e" if is_dark else "#f7f7f7"
+                card_border = "#444" if is_dark else "#ddd"
+                text_color = "#fff" if is_dark else "#000"
+
+                for item in history:
+                    stat = item.get("status", "Pending")
+                    badge_html = status_badge_html(stat)
+                    st.markdown(
+                        f"""
+                        <div style="
+                            padding:15px;
+                            margin-bottom:14px;
+                            border-radius:10px;
+                            background:{card_bg};
+                            border:1px solid {card_border};
+                            color:{text_color};
+                        ">
+                            <b>🆔 Complaint ID:</b> {item.get('complaint_id')}<br>
+                            <b>📝 Complaint:</b> {item.get('complaint_text')}<br>
+                            <b>🏷 Issue:</b> {item.get('classification', {}).get('issue_type')}<br>
+                            <b>🏛 Department:</b> {item.get('department', {}).get('name')}<br>
+                            <b>📌 Status:</b> {badge_html}<br>
+                            <b>📅 Timestamp:</b> {item.get('timestamp')}
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+        else:
+            st.error("❌ Could not fetch history from backend.")
+    except Exception as e:
+        st.error(f"❌ Error: {e}")
+import pandas as pd
+import base64
+
+csv_button = st.button("⬇️ Download CSV")
+
+if csv_button:
+    df = pd.read_csv("backend/memory/complaints.csv")
+    st.dataframe(df)
+

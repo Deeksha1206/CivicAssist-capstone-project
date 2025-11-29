@@ -1,31 +1,667 @@
 [
-    {
-        "complaint_id": "c-1d4272fd-cd03-418f-ad50-471bfa73500d",
-        "user_id": "user1",
-        "complaint_text": "No water since yesterday in my home",
-        "classification": {
-            "issue_type": "Water supply",
-            "confidence": 0.93,
-            "highlights": [
-                "no water"
-            ]
-        },
-        "department": {
-            "name": "Water Board",
-            "contact": {
-                "portal": "https://water.gov",
-                "phone": "0801234567"
-            },
-            "confidence": 0.9,
-            "justification": "Water issues are handled by Water Board."
-        },
-        "action_plan": {
-            "steps": [
-                "Take a photo of water meter.",
-                "Submit complaint on Water Board portal.",
-                "If unresolved in 48 hours, escalate."
-            ],
-            "estimated_resolution_time": "48-72 hours"
-        }
-    }
+  {
+    "complaint_id": "c-fe8b5f4a-cad7-4452-9bea-0d529053e6e5",
+    "user_id": "user1",
+    "complaint_text": "garbage is not picked up from 1 week",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://sanitation.gov",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Check collection day & submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "timestamp": "2025-11-29T14:29:29.069124"
+  },
+  {
+    "complaint_id": "c-34e84d31-580a-4cce-aa20-04578215b045",
+    "user_id": "user1",
+    "complaint_text": "garbage is not picked up from 1 week",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://sanitation.gov",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Check collection day & submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "timestamp": "2025-11-29T14:29:43.382555"
+  },
+  {
+    "complaint_id": "c-9c70ff2e-179c-4094-8451-64cea7d600a8",
+    "user_id": "user2",
+    "complaint_text": "electricity will not be there after 7pm everyday",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://electricity.gov",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours if widespread.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "timestamp": "2025-11-29T14:30:36.531297"
+  },
+  {
+    "complaint_id": "c-eaa02e68-3b3a-4dd5-8242-7656014c5451",
+    "user_id": "user3",
+    "complaint_text": "mosquitoes due to garbage dumped in empty sight",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://sanitation.gov",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Check collection day & submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "timestamp": "2025-11-29T14:33:16.452806"
+  },
+  {
+    "complaint_id": "c-1897f256-8ed9-4a93-b3bd-e80cd76b8a78",
+    "user_id": "user4",
+    "complaint_text": "too much traffic created due to road damage in my area",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://publicworks.gov",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark exact location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "timestamp": "2025-11-29T14:35:23.755449"
+  },
+  {
+    "complaint_id": "c-f05701a5-31b5-402a-a9e4-88e0a705ca68",
+    "user_id": "user1",
+    "complaint_text": "too much traffic created due to road damage in my area",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://publicworks.gov",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark exact location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "timestamp": "2025-11-29T14:36:07.825421"
+  },
+  {
+    "complaint_id": "c-79b1f1c3-ea07-459f-b94d-1565ed0f6386",
+    "user_id": "user1",
+    "complaint_text": "there is a power cut in my area since 2 days",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://electricity.gov",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours if widespread.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "timestamp": "2025-11-29T14:56:49.114987"
+  },
+  {
+    "complaint_id": "c-d9051ed9-919d-4394-a703-62bc518f428f",
+    "user_id": "user6",
+    "complaint_text": "no water supply in my area",
+    "classification": {
+      "issue_type": "Water supply",
+      "confidence": 0.93,
+      "highlights": [
+        "no water"
+      ]
+    },
+    "department": {
+      "name": "Water Board",
+      "contact": {
+        "portal": "https://water.gov",
+        "phone": "0801234567"
+      },
+      "confidence": 0.9,
+      "justification": "Water issues handled by Water Board."
+    },
+    "action_plan": {
+      "steps": [
+        "Take a photo of water meter.",
+        "Submit complaint on Water Board portal.",
+        "If unresolved in 48 hours, escalate."
+      ],
+      "estimated_resolution_time": "48-72 hours"
+    },
+    "timestamp": "2025-11-29T15:01:35.028874"
+  },
+  {
+    "complaint_id": "c-47607a28-899e-4cc0-9331-62513f8bd6f2",
+    "user_id": "user 7",
+    "complaint_text": "the  road construction infront of my house is pending",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://publicworks.gov",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark exact location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "timestamp": "2025-11-29T15:04:14.126651"
+  },
+  {
+    "complaint_id": "c-86605bba-b07f-442b-a284-e39aa4304737",
+    "user_id": "user 8",
+    "complaint_text": "the  road construction infront of my house is pending",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://publicworks.gov",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark exact location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "timestamp": "2025-11-29T15:04:43.809523"
+  },
+  {
+    "complaint_id": "c-f63c38b5-26cb-4c5a-9968-a2eff73c33ea",
+    "user_id": "user5",
+    "complaint_text": "no power",
+    "classification": {
+      "issue_type": "General civic",
+      "confidence": 0.6,
+      "highlights": []
+    },
+    "department": {
+      "name": "Civic Helpdesk",
+      "contact": {
+        "portal": "https://civichelp.gov",
+        "phone": "0800000000"
+      },
+      "confidence": 0.7,
+      "justification": "General civic category."
+    },
+    "action_plan": {
+      "steps": [
+        "Log complaint on Civic Helpdesk.",
+        "Follow up after 72 hours."
+      ],
+      "estimated_resolution_time": "72+ hours"
+    },
+    "timestamp": "2025-11-29T15:19:19.397548"
+  },
+  {
+    "complaint_id": "c-7a79222a-7131-4cf5-b255-95f49806c7db",
+    "user_id": "user5",
+    "complaint_text": "power cut ",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://electricity.gov",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours if widespread.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "timestamp": "2025-11-29T15:19:41.085913"
+  },
+  {
+    "complaint_id": "c-9657fd7e-78fe-4958-89f1-ea5f0acdd34c",
+    "user_id": "user9",
+    "complaint_text": "due to garbage dump in empty sight in our area there is increase of mosquitoes",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://sanitation.gov",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Check collection day & submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "timestamp": "2025-11-29T15:20:50.059390"
+  },
+  {
+    "complaint_id": "c-a5ea89ce-f08d-4c0b-be0d-1eaa3a759dd8",
+    "user_id": "user10",
+    "complaint_text": "too much noise in neighbourhood",
+    "classification": {
+      "issue_type": "General civic",
+      "confidence": 0.6,
+      "highlights": []
+    },
+    "department": {
+      "name": "Civic Helpdesk",
+      "contact": {
+        "portal": "https://civichelp.gov",
+        "phone": "0800000000"
+      },
+      "confidence": 0.7,
+      "justification": "General civic category."
+    },
+    "action_plan": {
+      "steps": [
+        "Log complaint on Civic Helpdesk.",
+        "Follow up after 72 hours."
+      ],
+      "estimated_resolution_time": "72+ hours"
+    },
+    "status": "Resolved",
+    "timestamp": "2025-11-29T16:11:49.145093"
+  },
+  {
+    "complaint_id": "c-5b017937-775b-40c2-945d-3fd8271314a9",
+    "user_id": "user10",
+    "complaint_text": "power cut since yesterday",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://electricity.gov",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "status": "Resolved",
+    "timestamp": "2025-11-29T16:12:24.038670"
+  },
+  {
+    "complaint_id": "c-6cd568fa-cd84-4149-8641-752bffcd4993",
+    "user_id": "user11",
+    "complaint_text": "too much traffic since people are parking cars on road",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://kpwd.karnataka.gov.in/english",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "status": "Resolved",
+    "timestamp": "2025-11-29T16:17:58.705867"
+  },
+  {
+    "complaint_id": "c-3803ffe1-3f3f-4e19-a4dc-48fcdc003d57",
+    "user_id": "user3",
+    "complaint_text": "streetlight not working since 5 days",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://kpwd.karnataka.gov.in/english",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "status": "Resolved",
+    "timestamp": "2025-11-29T16:21:47.062064"
+  },
+  {
+    "complaint_id": "c-1cfcd4cc-7ef9-4e4a-9102-ce4f7f99cc3b",
+    "user_id": "user13",
+    "complaint_text": "road under construction from past many days",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://kpwd.karnataka.gov.in/english",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "status": "In Progress",
+    "timestamp": "2025-11-29T16:28:40.461125"
+  },
+  {
+    "complaint_id": "c-285d9808-35fa-4a22-bb2b-aa9ca4f983f9",
+    "user_id": "deeksha123",
+    "complaint_text": "water supply is very minimal in my area",
+    "classification": {
+      "issue_type": "Water supply",
+      "confidence": 0.93,
+      "highlights": [
+        "water"
+      ]
+    },
+    "department": {
+      "name": "Water Board",
+      "contact": {
+        "portal": "https://bwssb.karnataka.gov.in/info-1/About+BWSSB/en",
+        "phone": "0801234567"
+      },
+      "confidence": 0.9,
+      "justification": "Water issues handled by Water Board."
+    },
+    "action_plan": {
+      "steps": [
+        "Take a photo of water meter.",
+        "Submit complaint on Water Board portal.",
+        "If unresolved in 48 hours, escalate."
+      ],
+      "estimated_resolution_time": "48-72 hours"
+    },
+    "status": "Resolved",
+    "timestamp": "2025-11-29T16:37:24.301257"
+  },
+  {
+    "complaint_id": "c-5fe1a0cc-bf19-4c29-a8dc-9d8e0c7f8d3b",
+    "user_id": "user17",
+    "complaint_text": "electricity supply is nil after 7pm",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://bescom.karnataka.gov.in/english",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "status": "In Progress",
+    "timestamp": "2025-11-29T16:42:38.984370"
+  },
+  {
+    "complaint_id": "c-f42fce7f-50ff-41c3-b5cf-10ddc39b966a",
+    "user_id": "deeksha124",
+    "complaint_text": "noise pollution in my society",
+    "classification": {
+      "issue_type": "General civic",
+      "confidence": 0.6,
+      "highlights": []
+    },
+    "department": {
+      "name": "Civic Helpdesk",
+      "contact": {
+        "portal": "https://civicspace.in/",
+        "phone": "0800000000"
+      },
+      "confidence": 0.7,
+      "justification": "General civic category."
+    },
+    "action_plan": {
+      "steps": [
+        "Log complaint on Civic Helpdesk.",
+        "Follow up after 72 hours."
+      ],
+      "estimated_resolution_time": "72+ hours"
+    },
+    "status": "Pending",
+    "timestamp": "2025-11-29T16:52:44.260370"
+  },
+  {
+    "complaint_id": "c-59618af8-6e80-4257-ac2b-128f482f0119",
+    "user_id": "user16",
+    "complaint_text": "illegal garbage dumping",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://bwssb.karnataka.gov.in/info-1/About+BWSSB/en",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "status": "Resolved",
+    "timestamp": "2025-11-29T16:59:43.262715"
+  }
 ]
