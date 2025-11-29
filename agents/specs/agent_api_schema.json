@@ -1,0 +1,34 @@
+{
+    "final_response": {
+      "complaint_id": "string",
+      "user_id": "string",
+      "classification": {
+        "issue_type": "string",
+        "confidence": "number",
+        "highlights": []
+      },
+      "department": {
+        "name": "string",
+        "contact": {
+          "portal": "string",
+          "phone": "string"
+        },
+        "confidence": "number",
+        "justification": "string"
+      },
+      "action_plan": {
+        "steps": [],
+        "estimated_resolution_time": "string"
+      },
+      "file_options": {
+        "can_file": true,
+        "file_payload": {}
+      },
+      "memory_saved": true,
+      "explainability": "string",
+      "timestamps": {
+        "created_at": "ISO8601 datetime"
+      }
+    }
+  }
+  
