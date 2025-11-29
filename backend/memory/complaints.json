@@ -663,5 +663,67 @@
     },
     "status": "Resolved",
     "timestamp": "2025-11-29T16:59:43.262715"
+  },
+  {
+    "complaint_id": "c-4cdb1bcf-f46c-464f-a46e-557ddc9b1427",
+    "user_id": "user20",
+    "complaint_text": "electricity supply issue",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://bescom.karnataka.gov.in/english",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "status": "In Progress",
+    "timestamp": "2025-11-29T18:41:38.007993"
+  },
+  {
+    "complaint_id": "c-5ee68056-9181-4126-b191-20c7152277d4",
+    "user_id": "jai",
+    "complaint_text": "no power supply",
+    "classification": {
+      "issue_type": "General civic",
+      "confidence": 0.6,
+      "highlights": []
+    },
+    "department": {
+      "name": "Civic Helpdesk",
+      "contact": {
+        "portal": "https://civicspace.in/",
+        "phone": "0800000000"
+      },
+      "confidence": 0.7,
+      "justification": "General civic category."
+    },
+    "action_plan": {
+      "steps": [
+        "Log complaint on Civic Helpdesk.",
+        "Follow up after 72 hours."
+      ],
+      "estimated_resolution_time": "72+ hours"
+    },
+    "status": "Resolved",
+    "state": "Kerala",
+    "city": "Thiruvananthapuram",
+    "timestamp": "2025-11-29T19:15:46.644838"
   }
 ]

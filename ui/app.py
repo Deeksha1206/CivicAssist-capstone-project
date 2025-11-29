@@ -21,24 +21,45 @@ backend_url = st.sidebar.text_input("Backend URL", "http://127.0.0.1:8000")
 
 # -------- Helper: status badge HTML -------
 def status_badge_html(status: str) -> str:
-    """Return an inline HTML badge for a status string."""
     s = (status or "").lower()
     if s == "pending":
-        bg = "#f0c14b"  # yellow-ish
-        emoji = "🟡"
-    elif s == "in progress" or s == "in-progress":
-        bg = "#f39c12"  # orange
-        emoji = "🟠"
+        bg = "#f0c14b"; emoji = "🟡"
+    elif s in ["in progress", "in-progress"]:
+        bg = "#f39c12"; emoji = "🟠"
     elif s == "resolved":
-        bg = "#2ecc71"  # green
-        emoji = "🟢"
+        bg = "#2ecc71"; emoji = "🟢"
     else:
-        bg = "#95a5a6"  # gray
-        emoji = "⚪"
+        bg = "#95a5a6"; emoji = "⚪"
     return f'<span style="background:{bg};color:#000;padding:6px 10px;border-radius:12px;font-weight:600">{emoji} {status}</span>'
+
+# ---------------- STATE → CITY DATA ----------------
+states_cities = {
+    "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubballi", "Belagavi", "Shivamogga", "Davanagere"],
+    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Salem", "Trichy", "Vellore"],
+    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Kolhapur"],
+    "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Khammam"],
+    "Kerala": ["Kochi", "Thiruvananthapuram", "Kozhikode", "Kannur"],
+    "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+    "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota"],
+    "Punjab": ["Amritsar", "Ludhiana", "Jalandhar", "Patiala"],
+    "West Bengal": ["Kolkata", "Howrah", "Siliguri", "Durgapur"],
+    "Bihar": ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur"],
+    "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
+    "Madhya Pradesh": ["Indore", "Bhopal", "Gwalior", "Jabalpur"]
+}
 
 # ---------------- COMPLAINT FORM ----------------
 st.subheader("📝 Submit a Complaint")
+
+# --- Dynamic State / City Handling ---
+state = st.selectbox("Select State", list(states_cities.keys()), key="state_select")
+
+# Reset city when state changes
+if "last_state" not in st.session_state or st.session_state.last_state != state:
+    st.session_state.last_state = state
+    st.session_state.city = states_cities[state][0]
+
+city = st.selectbox("Select City", states_cities[state], key="city_select_dynamic")
 
 with st.form("complaint_form"):
     user_id = st.text_input("User ID", value="user1")
@@ -52,6 +73,8 @@ if submitted:
         payload = {
             "user_id": user_id,
             "complaint_text": complaint_text,
+            "state": state,
+            "city": city,
             "attachments": []
         }
 
@@ -76,6 +99,7 @@ if submitted:
                 unsafe_allow_html=True
             )
 
+            # Highlights
             if cls.get("highlights"):
                 st.markdown("**Highlights:**")
                 for h in cls["highlights"]:
@@ -91,7 +115,6 @@ if submitted:
                 <b>Portal:</b> <a href="{dep.get('contact', {}).get('portal')}" target="_blank" style="color:#4da6ff;">
                 {dep.get('contact', {}).get('portal')}
                 </a><br>
-
                 <b>Phone:</b> {dep.get('contact', {}).get('phone')}<br>
                 <b>Justification:</b> {dep.get('justification')}<br>
                 <b>Confidence:</b> {dep.get('confidence')}
@@ -107,9 +130,10 @@ if submitted:
             for step in plan.get("steps", []):
                 st.markdown(f"<li>{step}</li>", unsafe_allow_html=True)
             st.markdown("</ul>", unsafe_allow_html=True)
+
             st.markdown(f"**Estimated resolution time:** {plan.get('estimated_resolution_time')}")
 
-            # ------- Complaint Status (NEW) -------
+            # ------- Complaint Status -------
             st.markdown("### 📌 Complaint Status")
             status = result.get("status", "Pending")
             st.markdown(status_badge_html(status), unsafe_allow_html=True)
@@ -137,7 +161,6 @@ if st.button("Get History"):
             else:
                 st.markdown("### 📜 Past Complaints")
 
-                # DARK MODE / LIGHT MODE handling
                 is_dark = st.get_option("theme.base") == "dark"
                 card_bg = "#1e1e1e" if is_dark else "#f7f7f7"
                 card_border = "#444" if is_dark else "#ddd"
@@ -170,12 +193,9 @@ if st.button("Get History"):
             st.error("❌ Could not fetch history from backend.")
     except Exception as e:
         st.error(f"❌ Error: {e}")
+
 import pandas as pd
-import base64
 
-csv_button = st.button("⬇️ Download CSV")
-
-if csv_button:
+if st.button("⬇️ Download CSV"):
     df = pd.read_csv("backend/memory/complaints.csv")
     st.dataframe(df)
-

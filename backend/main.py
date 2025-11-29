@@ -1,4 +1,3 @@
-# backend/main.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uuid
@@ -43,7 +42,7 @@ def simple_map_department(classification: dict) -> dict:
     if "water" in issue:
         return {
             "name": "Water Board",
-            "contact": {"portal": "https://bwssb.karnataka.gov.in/info-1/About+BWSSB/en", "phone": "0801234567"},
+            "contact": {"portal": "https://cms.bwssb.gov.in/module/complain/new_complaint", "phone": "0801234567"},
             "confidence": 0.9,
             "justification": "Water issues handled by Water Board."
         }
@@ -126,6 +125,8 @@ def simple_plan(classification: dict) -> dict:
 class ComplaintRequest(BaseModel):
     user_id: str
     complaint_text: str
+    state: str
+    city: str
     attachments: list = []
 
 class ComplaintResponse(BaseModel):
@@ -160,6 +161,8 @@ def resolve(complaint: ComplaintRequest):
             "department": department,
             "action_plan": action_plan,
             "status": status,
+            "state": complaint.state,
+            "city": complaint.city,
             "timestamp": datetime.datetime.utcnow().isoformat()
         }
 
@@ -177,7 +180,7 @@ def resolve(complaint: ComplaintRequest):
         with open(memory_file, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
 
-        # --- ALSO SAVE CSV FORMAT (NEW) ---
+        # --- ALSO SAVE CSV FORMAT ---
         import csv
         csv_file = "backend/memory/complaints.csv"
         csv_exists = os.path.exists(csv_file)
@@ -193,6 +196,8 @@ def resolve(complaint: ComplaintRequest):
                     "issue_type",
                     "department",
                     "status",
+                    "state",
+                    "city",
                     "timestamp"
                 ])
 
@@ -203,6 +208,8 @@ def resolve(complaint: ComplaintRequest):
                 classification.get("issue_type"),
                 department.get("name"),
                 status,
+                complaint.state,
+                complaint.city,
                 entry["timestamp"]
             ])
 
