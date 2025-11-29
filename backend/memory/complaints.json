@@ -1,0 +1,31 @@
+[
+    {
+        "complaint_id": "c-1d4272fd-cd03-418f-ad50-471bfa73500d",
+        "user_id": "user1",
+        "complaint_text": "No water since yesterday in my home",
+        "classification": {
+            "issue_type": "Water supply",
+            "confidence": 0.93,
+            "highlights": [
+                "no water"
+            ]
+        },
+        "department": {
+            "name": "Water Board",
+            "contact": {
+                "portal": "https://water.gov",
+                "phone": "0801234567"
+            },
+            "confidence": 0.9,
+            "justification": "Water issues are handled by Water Board."
+        },
+        "action_plan": {
+            "steps": [
+                "Take a photo of water meter.",
+                "Submit complaint on Water Board portal.",
+                "If unresolved in 48 hours, escalate."
+            ],
+            "estimated_resolution_time": "48-72 hours"
+        }
+    }
+]
