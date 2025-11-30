@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.responses import Response
 import uuid
 import datetime
 import random
@@ -125,12 +126,14 @@ def simple_plan(classification: dict) -> dict:
         "estimated_resolution_time": "72+ hours"
     }
 
+
 class ComplaintRequest(BaseModel):
     user_id: str
     complaint_text: str
     state: str
     city: str
     attachments: list = []
+
 
 class ComplaintResponse(BaseModel):
     complaint_id: str
@@ -140,6 +143,7 @@ class ComplaintResponse(BaseModel):
     status: str
     file_options: dict
     memory_saved: bool
+
 
 @app.post("/agent/resolve", response_model=ComplaintResponse)
 def resolve(complaint: ComplaintRequest):
@@ -169,6 +173,7 @@ def resolve(complaint: ComplaintRequest):
             "timestamp": datetime.datetime.utcnow().isoformat()
         }
 
+        # Save JSON
         data = []
         if os.path.exists(memory_file):
             with open(memory_file, "r", encoding="utf-8") as f:
@@ -182,7 +187,7 @@ def resolve(complaint: ComplaintRequest):
         with open(memory_file, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
 
-        # ---------------- CSV UPDATED BELOW ----------------
+        # Save CSV
         import csv
         csv_file = "backend/memory/complaints.csv"
         csv_exists = os.path.exists(csv_file)
@@ -201,7 +206,7 @@ def resolve(complaint: ComplaintRequest):
                     "state",
                     "city",
                     "timestamp",
-                    "attachments"   # NEW COLUMN
+                    "attachments"
                 ])
 
             writer.writerow([
@@ -214,7 +219,7 @@ def resolve(complaint: ComplaintRequest):
                 complaint.state,
                 complaint.city,
                 entry["timestamp"],
-                ",".join(complaint.attachments)  # NEW VALUE
+                ",".join(complaint.attachments)
             ])
 
         saved = True
@@ -232,6 +237,8 @@ def resolve(complaint: ComplaintRequest):
         "memory_saved": saved
     }
 
+
+# ✅ FIXED: HISTORY endpoint (you had it empty)
 @app.get("/agent/history/{user_id}")
 def get_history(user_id: str):
     memory_file = "backend/memory/complaints.json"
@@ -248,3 +255,14 @@ def get_history(user_id: str):
     user_history = [c for c in data if c.get("user_id") == user_id]
 
     return {"history": user_history}
+
+
+# ✅ FIXED: CSV endpoint (previously broken)
+@app.get("/memory/csv")
+def get_csv():
+    csv_file = "backend/memory/complaints.csv"
+    if not os.path.exists(csv_file):
+        return Response("", media_type="text/csv")
+
+    with open(csv_file, "r", encoding="utf-8") as f:
+        return Response(f.read(), media_type="text/csv")
