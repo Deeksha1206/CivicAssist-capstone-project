@@ -217,3 +217,37 @@ if st.button("Get History"):
 if st.button("⬇️ Download CSV"):
     df = pd.read_csv("backend/memory/complaints.csv")
     st.dataframe(df)
+# ---------------- ANALYTICS DASHBOARD ----------------
+st.write("---")
+st.subheader("📊 Analytics Dashboard")
+
+if st.button("Show Dashboard"):
+    try:
+        df = pd.read_csv("backend/memory/complaints.csv")
+
+        if df.empty:
+            st.info("No complaint data available yet.")
+        else:
+            st.markdown("### 📌 Complaints per Department")
+            dep_counts = df["department"].value_counts()
+            st.bar_chart(dep_counts)
+
+            st.markdown("### 🏙 Complaints per State")
+            state_counts = df["state"].value_counts()
+            st.bar_chart(state_counts)
+
+            st.markdown("### 🟢 Resolved vs 🟡 Pending vs 🟠 In‑Progress")
+            status_counts = df["status"].value_counts()
+            st.bar_chart(status_counts)
+
+            # IMAGE COUNT ANALYSIS
+            st.markdown("### 🖼 Complaints with Image Attachments")
+            df["has_image"] = df["complaint_id"].isin(
+                [item["complaint_id"] for item in requests.get(f"{backend_url}/agent/history/user1").json().get("history", []) if item.get("attachments")]
+            )
+            image_counts = df["has_image"].value_counts().rename({True: "With Image", False: "Without Image"})
+            st.bar_chart(image_counts)
+
+    except Exception as e:
+        st.error(f"Error loading dashboard: {e}")
+
