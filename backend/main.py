@@ -12,17 +12,16 @@ app = FastAPI()
 def home():
     return {"message": "CivicAssist backend is running successfully!"}
 
-# ------------------ SIMPLE RULE-BASED CLASSIFIER ------------------ #
 def simple_classify(text: str) -> dict:
     t = text.lower()
     highlights = []
 
     if any(k in t for k in ["no water", "water supply", "water", "tap", "meter"]):
-        highlights.append("no water" if "no water" in t else "water")
+        highlights.append("water")
         return {"issue_type": "Water supply", "confidence": 0.93, "highlights": highlights}
 
     if any(k in t for k in ["no electricity", "power cut", "power outage", "electricity", "meter not working"]):
-        highlights.append("no electricity")
+        highlights.append("electricity")
         return {"issue_type": "Electricity supply", "confidence": 0.92, "highlights": highlights}
 
     if any(k in t for k in ["garbage", "trash", "rubbish", "waste"]):
@@ -35,7 +34,6 @@ def simple_classify(text: str) -> dict:
 
     return {"issue_type": "General civic", "confidence": 0.6, "highlights": []}
 
-# ------------------ DEPARTMENT MAPPER ------------------ #
 def simple_map_department(classification: dict) -> dict:
     issue = classification.get("issue_type", "").lower()
 
@@ -78,50 +76,55 @@ def simple_map_department(classification: dict) -> dict:
         "justification": "General civic category."
     }
 
-# ------------------ ACTION PLAN ------------------ #
 def simple_plan(classification: dict) -> dict:
     itype = classification.get("issue_type", "").lower()
 
     if "water" in itype:
-        steps = [
-            "Take a photo of water meter.",
-            "Submit complaint on Water Board portal.",
-            "If unresolved in 48 hours, escalate."
-        ]
-        eta = "48-72 hours"
+        return {
+            "steps": [
+                "Take a photo of water meter.",
+                "Submit complaint on Water Board portal.",
+                "If unresolved in 48 hours, escalate."
+            ],
+            "estimated_resolution_time": "48-72 hours"
+        }
 
-    elif "electric" in itype:
-        steps = [
-            "Note the outage time.",
-            "Check with neighbours.",
-            "Report to Electricity Dept portal.",
-            "Escalate after 24 hours."
-        ]
-        eta = "24-48 hours"
+    if "electric" in itype:
+        return {
+            "steps": [
+                "Note the outage time.",
+                "Check with neighbours.",
+                "Report to Electricity Dept portal.",
+                "Escalate after 24 hours."
+            ],
+            "estimated_resolution_time": "24-48 hours"
+        }
 
-    elif "garbage" in itype:
-        steps = [
-            "Take photo of garbage pile.",
-            "Submit complaint on Sanitation portal.",
-            "Escalate if not cleared in 48 hours."
-        ]
-        eta = "24-72 hours"
+    if "garbage" in itype:
+        return {
+            "steps": [
+                "Take photo of garbage pile.",
+                "Submit complaint on Sanitation portal.",
+                "Escalate if not cleared in 48 hours."
+            ],
+            "estimated_resolution_time": "24-72 hours"
+        }
 
-    elif "road" in itype:
-        steps = [
-            "Take photo of pothole.",
-            "Mark location & submit to Public Works portal.",
-            "Escalate for urgent repairs if safety risk."
-        ]
-        eta = "7-14 days"
+    if "road" in itype:
+        return {
+            "steps": [
+                "Take photo of pothole.",
+                "Mark location & submit to Public Works portal.",
+                "Escalate for urgent repairs if safety risk."
+            ],
+            "estimated_resolution_time": "7-14 days"
+        }
 
-    else:
-        steps = ["Log complaint on Civic Helpdesk.", "Follow up after 72 hours."]
-        eta = "72+ hours"
+    return {
+        "steps": ["Log complaint on Civic Helpdesk.", "Follow up after 72 hours."],
+        "estimated_resolution_time": "72+ hours"
+    }
 
-    return {"steps": steps, "estimated_resolution_time": eta}
-
-# ------------------ REQUEST & RESPONSE MODELS ------------------ #
 class ComplaintRequest(BaseModel):
     user_id: str
     complaint_text: str
@@ -138,7 +141,6 @@ class ComplaintResponse(BaseModel):
     file_options: dict
     memory_saved: bool
 
-# ------------------ RESOLVE ENDPOINT ------------------ #
 @app.post("/agent/resolve", response_model=ComplaintResponse)
 def resolve(complaint: ComplaintRequest):
 
@@ -163,10 +165,10 @@ def resolve(complaint: ComplaintRequest):
             "status": status,
             "state": complaint.state,
             "city": complaint.city,
+            "attachments": complaint.attachments,
             "timestamp": datetime.datetime.utcnow().isoformat()
         }
 
-        # Load JSON memory
         data = []
         if os.path.exists(memory_file):
             with open(memory_file, "r", encoding="utf-8") as f:
@@ -180,7 +182,7 @@ def resolve(complaint: ComplaintRequest):
         with open(memory_file, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
 
-        # --- ALSO SAVE CSV FORMAT ---
+        # ---------------- CSV UPDATED BELOW ----------------
         import csv
         csv_file = "backend/memory/complaints.csv"
         csv_exists = os.path.exists(csv_file)
@@ -198,7 +200,8 @@ def resolve(complaint: ComplaintRequest):
                     "status",
                     "state",
                     "city",
-                    "timestamp"
+                    "timestamp",
+                    "attachments"   # NEW COLUMN
                 ])
 
             writer.writerow([
@@ -210,7 +213,8 @@ def resolve(complaint: ComplaintRequest):
                 status,
                 complaint.state,
                 complaint.city,
-                entry["timestamp"]
+                entry["timestamp"],
+                ",".join(complaint.attachments)  # NEW VALUE
             ])
 
         saved = True
@@ -228,7 +232,6 @@ def resolve(complaint: ComplaintRequest):
         "memory_saved": saved
     }
 
-# ------------------ HISTORY ENDPOINT ------------------ #
 @app.get("/agent/history/{user_id}")
 def get_history(user_id: str):
     memory_file = "backend/memory/complaints.json"

@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
+import base64
 from datetime import datetime
+import pandas as pd
 
 st.set_page_config(page_title="CivicAssist", layout="centered")
 
@@ -54,12 +56,22 @@ st.subheader("📝 Submit a Complaint")
 # --- Dynamic State / City Handling ---
 state = st.selectbox("Select State", list(states_cities.keys()), key="state_select")
 
-# Reset city when state changes
 if "last_state" not in st.session_state or st.session_state.last_state != state:
     st.session_state.last_state = state
     st.session_state.city = states_cities[state][0]
 
 city = st.selectbox("Select City", states_cities[state], key="city_select_dynamic")
+
+# ---- IMAGE UPLOAD ----
+uploaded_image = st.file_uploader("Upload Image (optional)", type=["png", "jpg", "jpeg"])
+# ---- SHOW IMAGE PREVIEW ----
+if uploaded_image:
+    st.image(uploaded_image, caption="Uploaded Image Preview", width=250)
+
+
+attachment_b64 = None
+if uploaded_image:
+    attachment_b64 = base64.b64encode(uploaded_image.read()).decode("utf-8")
 
 with st.form("complaint_form"):
     user_id = st.text_input("User ID", value="user1")
@@ -70,12 +82,13 @@ if submitted:
     if not complaint_text.strip():
         st.error("⚠️ Please enter a complaint before submitting.")
     else:
+
         payload = {
             "user_id": user_id,
             "complaint_text": complaint_text,
             "state": state,
             "city": city,
-            "attachments": []
+            "attachments": [attachment_b64] if attachment_b64 else []
         }
 
         try:
@@ -86,7 +99,7 @@ if submitted:
 
             st.success("🎉 Complaint processed successfully!")
 
-            # ------- Classification -------
+            # Classification
             st.markdown("### 🔍 Classification")
             cls = result.get("classification", {})
             st.markdown(
@@ -99,13 +112,12 @@ if submitted:
                 unsafe_allow_html=True
             )
 
-            # Highlights
             if cls.get("highlights"):
                 st.markdown("**Highlights:**")
                 for h in cls["highlights"]:
                     st.write(f"- {h}")
 
-            # ------- Department -------
+            # Department
             st.markdown("### 🏛 Department")
             dep = result.get("department", {})
             st.markdown(
@@ -123,7 +135,7 @@ if submitted:
                 unsafe_allow_html=True
             )
 
-            # ------- Action Plan -------
+            # Action Plan
             st.markdown("### 🧭 Action Plan")
             plan = result.get("action_plan", {})
             st.markdown("<ul>", unsafe_allow_html=True)
@@ -133,7 +145,7 @@ if submitted:
 
             st.markdown(f"**Estimated resolution time:** {plan.get('estimated_resolution_time')}")
 
-            # ------- Complaint Status -------
+            # Status
             st.markdown("### 📌 Complaint Status")
             status = result.get("status", "Pending")
             st.markdown(status_badge_html(status), unsafe_allow_html=True)
@@ -169,6 +181,7 @@ if st.button("Get History"):
                 for item in history:
                     stat = item.get("status", "Pending")
                     badge_html = status_badge_html(stat)
+
                     st.markdown(
                         f"""
                         <div style="
@@ -189,12 +202,17 @@ if st.button("Get History"):
                         """,
                         unsafe_allow_html=True
                     )
+
+                    # ---- IMAGE PREVIEW ----
+                    if item.get("attachments"):
+                        st.markdown("📷 **Attached Image:**")
+                        for img_b64 in item["attachments"]:
+                            st.image(base64.b64decode(img_b64), width=120)
+
         else:
             st.error("❌ Could not fetch history from backend.")
     except Exception as e:
         st.error(f"❌ Error: {e}")
-
-import pandas as pd
 
 if st.button("⬇️ Download CSV"):
     df = pd.read_csv("backend/memory/complaints.csv")
