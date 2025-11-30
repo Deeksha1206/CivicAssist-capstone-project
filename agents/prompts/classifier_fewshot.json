@@ -1,0 +1,23 @@
+[
+    {
+      "input_text": "No water in my home since yesterday.",
+      "label": "Water supply",
+      "highlights": ["no water", "yesterday"]
+    },
+    {
+      "input_text": "Garbage has not been collected for a week.",
+      "label": "Garbage/Waste",
+      "highlights": ["garbage not collected", "week"]
+    },
+    {
+      "input_text": "Streetlight near the bus stop is not working.",
+      "label": "Streetlight/Lighting",
+      "highlights": ["streetlight not working", "bus stop"]
+    },
+    {
+      "input_text": "Frequent power cuts in our area.",
+      "label": "Electricity",
+      "highlights": ["power cuts"]
+    }
+  ]
+  

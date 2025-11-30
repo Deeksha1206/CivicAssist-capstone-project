@@ -1,0 +1,7 @@
+complaint_id,user_id,complaint_text,issue_type,department,status,state,city,timestamp
+c-d588c2b9-8261-4800-9b51-a1d0199a6679,user1,no water supply since morning,Water supply,Water Board,In Progress,Karnataka,Bengaluru,2025-11-30T07:10:53.762796
+c-88bd339d-1dcf-4ff7-82e8-38238280033f,user121,there is no electricity everyday after 7pm,Electricity supply,Electricity Dept,Resolved,Tamil Nadu,Madurai,2025-11-30T07:17:22.055486
+c-0db3d770-35b1-43e8-a7ab-baeedd028399,user132,illegal garbage dumping in the empty site near my house,Garbage collection,Sanitation Dept,Pending,Tamil Nadu,Madurai,2025-11-30T07:18:28.173521
+c-0b757952-fcc4-4cba-a4d8-7672b9815967,user14,mosquitoes increasing due to garbage dump,Garbage collection,Sanitation Dept,In Progress,Kerala,Kozhikode,2025-11-30T07:19:14.744595
+c-7b3925c5-ab8b-46ee-90b1-e8fb4cf1f4c4,user56,road under construction for long period of time which is increasing inconvienance,Road maintenance,Public Works,Resolved,Karnataka,Shivamogga,2025-11-30T07:20:04.230175
+c-164f33b5-d4f9-4552-841e-32521db15126,user67,trash is not picked up since 2 days ,Garbage collection,Sanitation Dept,Resolved,West Bengal,Siliguri,2025-11-30T07:22:31.841258

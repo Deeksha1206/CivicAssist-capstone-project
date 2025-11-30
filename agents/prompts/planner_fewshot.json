@@ -1,0 +1,14 @@
+[
+    {
+      "issue_type": "Water supply",
+      "action_plan": [
+        "Verify if neighbors also have water issues.",
+        "Take a photo of the affected tap/meter.",
+        "Submit a complaint on the Water Board portal.",
+        "Attach a photo and mention outage duration.",
+        "If unresolved in 48 hours, escalate to the Municipal Commissioner."
+      ],
+      "estimated_resolution_time": "48-72 hours"
+    }
+  ]
+  

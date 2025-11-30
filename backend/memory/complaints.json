@@ -1,0 +1,331 @@
+[
+  {
+    "complaint_id": "c-d1c248e9-b47a-4e59-854d-4748dfa2328b",
+    "user_id": "user16",
+    "complaint_text": "there is no water supply",
+    "classification": {
+      "issue_type": "Water supply",
+      "confidence": 0.93,
+      "highlights": [
+        "no water"
+      ]
+    },
+    "department": {
+      "name": "Water Board",
+      "contact": {
+        "portal": "https://cms.bwssb.gov.in/module/complain/new_complaint",
+        "phone": "0801234567"
+      },
+      "confidence": 0.9,
+      "justification": "Water issues handled by Water Board."
+    },
+    "action_plan": {
+      "steps": [
+        "Take a photo of water meter.",
+        "Submit complaint on Water Board portal.",
+        "If unresolved in 48 hours, escalate."
+      ],
+      "estimated_resolution_time": "48-72 hours"
+    },
+    "status": "Pending",
+    "state": "Karnataka",
+    "city": "Hubballi",
+    "timestamp": "2025-11-30T06:59:11.045097"
+  },
+  {
+    "complaint_id": "c-5b05a2fe-4cb0-498c-84b1-bddfe557cf29",
+    "user_id": "user16",
+    "complaint_text": "there is no water supply",
+    "classification": {
+      "issue_type": "Water supply",
+      "confidence": 0.93,
+      "highlights": [
+        "no water"
+      ]
+    },
+    "department": {
+      "name": "Water Board",
+      "contact": {
+        "portal": "https://cms.bwssb.gov.in/module/complain/new_complaint",
+        "phone": "0801234567"
+      },
+      "confidence": 0.9,
+      "justification": "Water issues handled by Water Board."
+    },
+    "action_plan": {
+      "steps": [
+        "Take a photo of water meter.",
+        "Submit complaint on Water Board portal.",
+        "If unresolved in 48 hours, escalate."
+      ],
+      "estimated_resolution_time": "48-72 hours"
+    },
+    "status": "Pending",
+    "state": "Karnataka",
+    "city": "Hubballi",
+    "timestamp": "2025-11-30T07:00:04.984977"
+  },
+  {
+    "complaint_id": "c-a078c3e1-15a8-4259-8de9-b2af96217e1b",
+    "user_id": "user11",
+    "complaint_text": "no electricity supply from morning",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://bescom.karnataka.gov.in/english",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "status": "Pending",
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "timestamp": "2025-11-30T07:06:29.789398"
+  },
+  {
+    "complaint_id": "c-d588c2b9-8261-4800-9b51-a1d0199a6679",
+    "user_id": "user1",
+    "complaint_text": "no water supply since morning",
+    "classification": {
+      "issue_type": "Water supply",
+      "confidence": 0.93,
+      "highlights": [
+        "no water"
+      ]
+    },
+    "department": {
+      "name": "Water Board",
+      "contact": {
+        "portal": "https://cms.bwssb.gov.in/module/complain/new_complaint",
+        "phone": "0801234567"
+      },
+      "confidence": 0.9,
+      "justification": "Water issues handled by Water Board."
+    },
+    "action_plan": {
+      "steps": [
+        "Take a photo of water meter.",
+        "Submit complaint on Water Board portal.",
+        "If unresolved in 48 hours, escalate."
+      ],
+      "estimated_resolution_time": "48-72 hours"
+    },
+    "status": "In Progress",
+    "state": "Karnataka",
+    "city": "Bengaluru",
+    "timestamp": "2025-11-30T07:10:53.762796"
+  },
+  {
+    "complaint_id": "c-40ed7bcc-8a5e-4804-82ff-cd8715d9dc03",
+    "user_id": "user121",
+    "complaint_text": "there is no power supply everyday after 7pm",
+    "classification": {
+      "issue_type": "General civic",
+      "confidence": 0.6,
+      "highlights": []
+    },
+    "department": {
+      "name": "Civic Helpdesk",
+      "contact": {
+        "portal": "https://civicspace.in/",
+        "phone": "0800000000"
+      },
+      "confidence": 0.7,
+      "justification": "General civic category."
+    },
+    "action_plan": {
+      "steps": [
+        "Log complaint on Civic Helpdesk.",
+        "Follow up after 72 hours."
+      ],
+      "estimated_resolution_time": "72+ hours"
+    },
+    "status": "Resolved",
+    "state": "Tamil Nadu",
+    "city": "Madurai",
+    "timestamp": "2025-11-30T07:17:00.628272"
+  },
+  {
+    "complaint_id": "c-88bd339d-1dcf-4ff7-82e8-38238280033f",
+    "user_id": "user121",
+    "complaint_text": "there is no electricity everyday after 7pm",
+    "classification": {
+      "issue_type": "Electricity supply",
+      "confidence": 0.92,
+      "highlights": [
+        "no electricity"
+      ]
+    },
+    "department": {
+      "name": "Electricity Dept",
+      "contact": {
+        "portal": "https://bescom.karnataka.gov.in/english",
+        "phone": "0807654321"
+      },
+      "confidence": 0.9,
+      "justification": "Power outages handled by the Electricity Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Note the outage time.",
+        "Check with neighbours.",
+        "Report to Electricity Dept portal.",
+        "Escalate after 24 hours."
+      ],
+      "estimated_resolution_time": "24-48 hours"
+    },
+    "status": "Resolved",
+    "state": "Tamil Nadu",
+    "city": "Madurai",
+    "timestamp": "2025-11-30T07:17:22.055486"
+  },
+  {
+    "complaint_id": "c-0db3d770-35b1-43e8-a7ab-baeedd028399",
+    "user_id": "user132",
+    "complaint_text": "illegal garbage dumping in the empty site near my house",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://bwssb.karnataka.gov.in/info-1/About+BWSSB/en",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "status": "Pending",
+    "state": "Tamil Nadu",
+    "city": "Madurai",
+    "timestamp": "2025-11-30T07:18:28.173521"
+  },
+  {
+    "complaint_id": "c-0b757952-fcc4-4cba-a4d8-7672b9815967",
+    "user_id": "user14",
+    "complaint_text": "mosquitoes increasing due to garbage dump",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://bwssb.karnataka.gov.in/info-1/About+BWSSB/en",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "status": "In Progress",
+    "state": "Kerala",
+    "city": "Kozhikode",
+    "timestamp": "2025-11-30T07:19:14.744595"
+  },
+  {
+    "complaint_id": "c-7b3925c5-ab8b-46ee-90b1-e8fb4cf1f4c4",
+    "user_id": "user56",
+    "complaint_text": "road under construction for long period of time which is increasing inconvienance",
+    "classification": {
+      "issue_type": "Road maintenance",
+      "confidence": 0.9,
+      "highlights": [
+        "road damage"
+      ]
+    },
+    "department": {
+      "name": "Public Works",
+      "contact": {
+        "portal": "https://kpwd.karnataka.gov.in/english",
+        "phone": "0803334444"
+      },
+      "confidence": 0.9,
+      "justification": "Road maintenance handled by Public Works."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of pothole.",
+        "Mark location & submit to Public Works portal.",
+        "Escalate for urgent repairs if safety risk."
+      ],
+      "estimated_resolution_time": "7-14 days"
+    },
+    "status": "Resolved",
+    "state": "Karnataka",
+    "city": "Shivamogga",
+    "timestamp": "2025-11-30T07:20:04.230175"
+  },
+  {
+    "complaint_id": "c-164f33b5-d4f9-4552-841e-32521db15126",
+    "user_id": "user67",
+    "complaint_text": "trash is not picked up since 2 days ",
+    "classification": {
+      "issue_type": "Garbage collection",
+      "confidence": 0.9,
+      "highlights": [
+        "garbage"
+      ]
+    },
+    "department": {
+      "name": "Sanitation Dept",
+      "contact": {
+        "portal": "https://bwssb.karnataka.gov.in/info-1/About+BWSSB/en",
+        "phone": "0801112222"
+      },
+      "confidence": 0.9,
+      "justification": "Garbage management handled by Sanitation Dept."
+    },
+    "action_plan": {
+      "steps": [
+        "Take photo of garbage pile.",
+        "Submit complaint on Sanitation portal.",
+        "Escalate if not cleared in 48 hours."
+      ],
+      "estimated_resolution_time": "24-72 hours"
+    },
+    "status": "Resolved",
+    "state": "West Bengal",
+    "city": "Siliguri",
+    "timestamp": "2025-11-30T07:22:31.841258"
+  }
+]

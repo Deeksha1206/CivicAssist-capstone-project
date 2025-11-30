@@ -1,0 +1,30 @@
+[
+    {
+      "issue_type": "Water supply",
+      "department": "Water Board",
+      "justification": "Water issues are handled by the Water Board.",
+      "contact": {
+        "portal": "https://water.gov",
+        "phone": "0801234567"
+      }
+    },
+    {
+      "issue_type": "Electricity",
+      "department": "Electricity Department",
+      "justification": "Power issues fall under the Electricity Board.",
+      "contact": {
+        "portal": "https://electricity.gov",
+        "phone": "0809876543"
+      }
+    },
+    {
+      "issue_type": "Garbage/Waste",
+      "department": "Municipal Corporation",
+      "justification": "Garbage issues are handled by the municipality.",
+      "contact": {
+        "portal": "https://municipal.gov",
+        "phone": "0803456789"
+      }
+    }
+  ]
+  
