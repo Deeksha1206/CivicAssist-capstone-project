@@ -215,16 +215,33 @@ if st.button("Get History"):
         st.error(f"❌ Error: {e}")
 
 if st.button("⬇️ Download CSV"):
-    df = pd.read_csv("backend/memory/complaints.csv")
-    st.dataframe(df)
+    csv_url = f"{backend_url}/memory/csv"
+    csv_data = requests.get(csv_url).text
+
+    if not csv_data.strip():
+        st.info("No complaint data available yet.")
+    else:
+        from io import StringIO
+        df = pd.read_csv(StringIO(csv_data))
+        st.dataframe(df)
+
+else:
+    st.error("Could not load CSV from backend.")
+
 # ---------------- ANALYTICS DASHBOARD ----------------
 st.write("---")
 st.subheader("📊 Analytics Dashboard")
 
 if st.button("Show Dashboard"):
     try:
-        df = pd.read_csv("backend/memory/complaints.csv")
+        csv_url = f"{backend_url}/memory/csv"
+        csv_data = requests.get(csv_url).text
 
+        if not csv_data.strip():
+            st.info("No complaint data available yet.")
+        else:
+            from io import StringIO
+            df = pd.read_csv(StringIO(csv_data))
         if df.empty:
             st.info("No complaint data available yet.")
         else:
