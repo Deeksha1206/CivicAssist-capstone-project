@@ -2,3 +2,5 @@ Flask
 gunicorn
 requests
 jinja2
+streamlit
+pandas
