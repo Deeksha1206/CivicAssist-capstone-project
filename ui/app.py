@@ -225,8 +225,7 @@ if st.button("⬇️ Download CSV"):
         df = pd.read_csv(StringIO(csv_data))
         st.dataframe(df)
 
-else:
-    st.error("Could not load CSV from backend.")
+
 
 # ---------------- ANALYTICS DASHBOARD ----------------
 st.write("---")
