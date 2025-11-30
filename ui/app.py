@@ -19,7 +19,7 @@ st.markdown(
 # ---------------- SIDEBAR ----------------
 st.sidebar.markdown("---")
 st.sidebar.header("⚙️ Settings")
-backend_url = st.sidebar.text_input("Backend URL", "https://civicassist-capstone-project-1.onrender.com/")
+backend_url = st.sidebar.text_input("Backend URL", "https://civicassist-capstone-project-1.onrender.com")
 
 # -------- Helper: status badge HTML -------
 def status_badge_html(status: str) -> str:
