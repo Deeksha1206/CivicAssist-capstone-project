@@ -1,118 +1,158 @@
-🌟 Overview
-CivicAssist is an AI‑powered multi‑agent system designed to streamline civic issue reporting for citizens and simplify resolution workflows for authorities. Citizens can submit complaints with text + images, while the backend automatically generates complaint IDs, stores images securely, categorizes issues, and tracks their status.
+# 🏛️ CivicAssist – AI-Powered Civic Issue Reporting System  
 
-Authorities can manage complaints via the backend API, and users get access to visual dashboards showing complaint trends.
+**CivicAssist** is an AI-driven, multi-agent platform designed to make civic complaint reporting simple for citizens and highly efficient for authorities.  
+Users can submit complaints with text + images, while authorities manage them through a backend API with complete analytics and automated workflows.
 
-This project satisfies all major capstone requirements including agents, memory, web integration, UI, analytics, and deployment.
+---
 
-🚀 Key Features
-1️⃣ Citizen Complaint Portal (Frontend – Streamlit)
-Submit complaints with:
-✔ Issue description
-✔ Department selection
-✔ State & city dropdowns
-✔ Image upload with instant preview
+## ✨ Overview  
+CivicAssist combines **AI agents**, **persistent memory**, **image processing**, **web integration**, and **full-stack deployment** to create a seamless civic issue management system.
 
-Images are uploaded to the backend in a dedicated /attachments folder.
+The system includes:  
+✔ Streamlit frontend for citizens  
+✔ FastAPI backend for authorities  
+✔ AI multi-agent workflow  
+✔ Complaint history memory  
+✔ Analytics dashboard  
+✔ End-to-end deployment on Render  
 
-Streamlit UI is fully deployed on Render.
+---
 
-2️⃣ AI Multi‑Agent System
-We implemented three specialized agents:
+# 🚀 Key Features  
 
-🤖 1. Classification Agent
-Identifies the issue category from user text & image.
-Maps complaints to departments (Public Works, Sanitation, Water, etc.).
-Ensures consistent issue tagging.
+## 1️⃣ Citizen Complaint Portal (Streamlit Frontend)
+Users can submit complaints with:  
+- ✔ Issue description  
+- ✔ Department selection  
+- ✔ State & city dropdowns  
+- ✔ Image upload (with instant preview)
 
-🤖 2. Summarizer / Status Generator Agent
-Generates clean, formatted summaries for authorities.
-Helps create concise descriptions for dashboards.
+Uploaded images are stored under `/attachments` in the backend.
 
-🤖 3. History Agent + Memory System
-Maintains persistent memory using complaints.json & complaints.csv.
-Returns the user’s complete complaint history with images.
-Enables timeline‑style view of past issues.
+The Streamlit UI is fully deployed on Render.
 
-3️⃣ Backend (FastAPI)
+---
+
+## 2️⃣ 🤖 AI Multi-Agent System  
+
+### **1. Classification Agent**  
+- Identifies complaint category from text + images  
+- Maps issues to departments (Sanitation, Water, Public Works, etc.)  
+- Ensures consistent classification  
+
+### **2. Summarizer / Status Generator Agent**  
+- Creates clean summaries for authorities  
+- Helps generate dashboard-friendly descriptions  
+
+### **3. History Agent + Memory System**  
+- Maintains persistent complaint history  
+- Uses `complaints.json` and `complaints.csv`  
+- Returns full timeline of user complaints with images  
+- Enables timeline-style view of past issues  
+
+---
+
+## 3️⃣ 📡 Backend (FastAPI)
+
 Fully implemented backend with:
-POST /submit → Store complaint + image
-GET /history/{user_id} → Returns complaint history with image paths
-File upload handling (MIME safe)
 
-Auto‑UUID complaint IDs
-Persistent storage in JSON and CSV
-Attachment storage in /backend/memory/attachments
-Backend successfully deployed on Render.
+### 🔥 Endpoints  
+| Method | Endpoint | Description |
+|-------|----------|-------------|
+| **POST** | `/submit` | Submit complaint + image |
+| **GET** | `/history/{user_id}` | Fetch complaint history with images |
 
-4️⃣ Dashboard & Analytics
-A beautiful analytics dashboard built inside app.py showing:
+### Backend Capabilities  
+- Auto-generated UUID complaint IDs  
+- Image storage under `/backend/memory/attachments`  
+- Persistent storage in **JSON + CSV**  
+- MIME-safe file upload handling  
 
-📊 Department-Wise Complaints
-Pie chart of complaints split by department.
+Backend is deployed on Render.
 
-🌍 State-Wise Complaints
-Bar chart of complaints across different states.
+---
 
-🔄 Status Analytics
-Visual summary of Resolved vs Pending complaints.
+## 4️⃣ 📊 Dashboard & Analytics  
 
-🖼️ Image-Based Insights
-Displays all uploaded images as a gallery.
+A complete analytics dashboard is integrated into `app.py`, showing:
 
-This section increases your scoring significantly.
+- **Department-wise complaints** (pie chart)  
+- **State-wise complaints** (bar chart)  
+- **Status analytics** (resolved vs pending)  
+- **Image gallery** of all uploaded images  
 
-5️⃣ Complaint History With Image Previews
-Users enter their User ID
+This dashboard significantly strengthens the project’s outcome and evaluation.
 
-System returns formatted cards including:
-✔ Complaint ID
-✔ Description
-✔ Issue type
-✔ Department
-✔ Status
-✔ Timestamp
-✔ Attached image preview
+---
 
-CSV download button included.
+## 5️⃣ 🕒 Complaint History With Image Previews  
 
-6️⃣ Full Deployment (Frontend + Backend)
-Both components deployed on Render:
-No local server required
-Works from any browser
-End-to-end workflow functional
+Users can enter their **User ID** and view formatted complaint cards including:
 
-🧠 Tech Stack
-1)Frontend
-Streamlit
-Plotly / Matplotlib
-Requests library for API calls
+- Complaint ID  
+- Description  
+- Issue type  
+- Department  
+- Status  
+- Timestamp  
+- Attached image preview  
 
-2)Backend
-FastAPI
-Python
-UUID for unique complaint IDs
-JSON & CSV storage
-File handling for uploaded images
+A **CSV download button** is included.
 
-Agents
-LangChain-style LLM agents
-Role-based agents for classification, memory & summaries
+---
 
-Deployment
-Render (Free Tier)
-backend:https://civicassist-capstone-project-1.onrender.com/ 
-frontend:https://civicassist-capstone-project-2.onrender.com/
-GitHub Automatic Deployment
+## 6️⃣ 🌐 Full Deployment (Frontend + Backend)  
 
-Conclusion
-CivicAssist transforms civic issue reporting into a seamless, AI‑driven experience.
-It solves real-world problems by enabling transparency, efficiency, and smart automation between citizens and government authorities.
+Both components deployed on Render (Free Tier):  
+- 🔗 **Backend:** https://civicassist-capstone-project-1.onrender.com/  
+- 🔗 **Frontend:** https://civicassist-capstone-project-2.onrender.com/
 
-This project demonstrates:
+Features:  
+✔ No local server needed  
+✔ Works from any browser  
+✔ Supports images + JSON  
+✔ Automatic GitHub deployment  
 
-Real multi-agent architecture
-Production-grade deployment
-Smart automation
-Clean UI + analytics
-Image-based civic management
+---
+
+# 🧠 Tech Stack  
+
+### **Frontend**  
+- Streamlit  
+- Plotly / Matplotlib  
+- Requests  
+
+### **Backend**  
+- FastAPI  
+- Python  
+- UUID  
+- JSON / CSV storage  
+- Image file handling  
+
+### **AI Agents**  
+- LangChain-style agent workflow  
+- Role-based agents for:
+  - Classification  
+  - Memory  
+  - Summaries  
+
+### **Deployment**  
+- Render (free tier)  
+- GitHub auto-deployment  
+
+---
+
+# 🏁 Conclusion  
+
+CivicAssist transforms civic issue reporting using **AI-powered automation**, **multi-agent intelligence**, and **clean UI/analytics**.  
+It provides a **real-world, deployable civic management solution** with:
+
+- ✔ Multi-agent architecture  
+- ✔ Production-ready deployment  
+- ✔ Persistent memory system  
+- ✔ Smart complaint automation  
+- ✔ Image-based civic issue tracking  
+- ✔ Full analytics dashboard  
+
+---
+
