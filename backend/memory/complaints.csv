@@ -1,8 +1,0 @@
-complaint_id,user_id,complaint_text,issue_type,department,status,timestamp
-c-1cfcd4cc-7ef9-4e4a-9102-ce4f7f99cc3b,user13,road under construction from past many days,Road maintenance,Public Works,In Progress,2025-11-29T16:28:40.461125
-c-285d9808-35fa-4a22-bb2b-aa9ca4f983f9,deeksha123,water supply is very minimal in my area,Water supply,Water Board,Resolved,2025-11-29T16:37:24.301257
-c-5fe1a0cc-bf19-4c29-a8dc-9d8e0c7f8d3b,user17,electricity supply is nil after 7pm,Electricity supply,Electricity Dept,In Progress,2025-11-29T16:42:38.984370
-c-f42fce7f-50ff-41c3-b5cf-10ddc39b966a,deeksha124,noise pollution in my society,General civic,Civic Helpdesk,Pending,2025-11-29T16:52:44.260370
-c-59618af8-6e80-4257-ac2b-128f482f0119,user16,illegal garbage dumping,Garbage collection,Sanitation Dept,Resolved,2025-11-29T16:59:43.262715
-c-4cdb1bcf-f46c-464f-a46e-557ddc9b1427,user20,electricity supply issue,Electricity supply,Electricity Dept,In Progress,2025-11-29T18:41:38.007993
-c-5ee68056-9181-4126-b191-20c7152277d4,jai,no power supply,General civic,Civic Helpdesk,Resolved,Kerala,Thiruvananthapuram,2025-11-29T19:15:46.644838
